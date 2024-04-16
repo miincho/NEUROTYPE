@@ -1,0 +1,28 @@
+@font-face {
+    font-family: 'synt';
+    src: url('abcsynt-regularitalic-trial-webfont.woff2') format('woff2'),
+         url('abcsynt-regularitalic-trial-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'montreal';
+    src: url('ppneuemontreal-book-webfont.woff2') format('woff2'),
+         url('ppneuemontreal-book-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'editorial';
+    src: url('ppeditorialold-italic-webfont.woff2') format('woff2'),
+         url('ppeditorialold-italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'pixel';
+    src: url('ArgentPixelCF-Italic.woff2') format('woff2'),
+         url('ArgentPixelCF-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

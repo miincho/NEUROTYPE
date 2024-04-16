@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Neurotype</title>
+    <link rel="stylesheet" href="effects.css" />
+    <link rel="stylesheet" href="/fonts/stylesheet.css" />
+  </head>
+  <body>
+    <div id="typesetting-page">
+      <div class="column left">
+        <div class="home-btn">N-</div>
+        <div class="typeset-title">Schizophrenia Simulation Through Type</div>
+        <div class="typeset-desc">
+          Schizophrenia is a mental illness whose symptoms usually occur in phases.
+          It is a type of psychosis, which means you can’t always tell the difference between what's real and what's a thought inside your head.
+          Try typing out some of your inner thoughts and watch as they morph into the simulations of the various phases. For more details, check out
+          the research here.
+        </div>
+        <div id="palidromal" class="phases"> PALIDROMAL PHASE</div>
+        <div id="phase1_desc">
+          In the first, prodromal phase, friends and family might notice strange
+          behavior. You might want to be alone much of the time and may start to
+          talk only about certain topics, such as religion, the government, or a
+          particular public figure. This phase can last from weeks to years.
+          Some people with schizophrenia never go past this point, but most do.
+        </div>
+        <div id="active" class="phases">ACTIVE PHASE</div>
+        <div id="phase2_desc">
+          The active phase (sometimes called “acute”), can be the most alarming
+          to friends and family. It causes symptoms of psychosis like delusions,
+          hallucinations, and jumbled speech and thoughts. Sometimes, this phase
+          appears suddenly without a prodromal stage.
+        </div>
+        <div id="remission" class="phases">REMISSION PHASE</div>
+        <div id="phase3_desc">
+          Doctors sometimes call this the “recovery” phase. In many ways, it
+          mirrors the prodromal phase. The more intense symptoms, like
+          hallucinations, start to fade. But you may still have some strange
+          beliefs. You're also likely to withdraw into yourself and talk less.
+          You might have trouble concentrating or keeping your thoughts
+          straight. You can become depressed as you become aware of the episode.
+        </div>
+        <br>
+        <div id="convert">+ Convert</div>
+      </div>
+        <div class="column right" id="editableDiv" contenteditable="true" oninput="placeholder(this)">
+            <div class="placeholder" id="placeholder">Type here...</div>
+        </div>
+    </div>
+
+    <script src="effects.js"></script>
+  </body>
+</html>
