@@ -1,0 +1,252 @@
+:root {
+	--color-bg: black;
+	--color-text-main: white;
+	--color-primary: white;
+	--wrapper-height: 87vh;
+	--image-max-width: 300px;
+	--image-margin: 3rem;
+	--font-family: "HK Grotesk";
+	--font-family-header: "HK Grotesk";
+  }
+
+  * {
+	box-sizing: border-box;
+  }
+  
+.rightWrapper{
+  margin-top: 30vh;
+}
+
+  body {
+	margin: 0;
+	padding: 0;
+	font-family: Helvetica;
+	background-color: var(--color-bg);
+	color: white;
+	overflow-x: hidden;
+  }
+  
+  #typesetting-page{
+	display:flex;
+	flex-direction: row;
+  }
+  
+  .typeset-title{
+	padding-top:5vh;
+	font-size: 2em;
+  }
+  
+  .typeset-desc{
+	padding-top: 2vh;
+	padding-right:1.5vw;
+	font-size: 0.9em;
+  }
+  
+  .column {
+	float: left;
+	padding-left:2vw;
+	padding-top:2vh;
+  }
+  
+  .left {
+	width: 25vw;
+	border-right: 1px solid white;
+	height: 100vh;
+  color: #4d4d4d;
+	
+  }
+  
+  .right {
+	width: 75vw;  
+  }
+  
+  .column.right {
+	right:0;
+	position:absolute; 
+  }
+  
+  .column.left{
+	position: fixed;
+	overflow: auto;
+  }
+
+  .phases{
+	padding-top:5vh;
+  }
+  
+  #phase1_desc, #phase2_desc, #phase3_desc {
+	display: none;
+	padding-right:1.5vw;
+	padding-top: 1.5vh;
+	font-size: 0.9em;
+  }
+  
+  #phase1_desc{
+	display: none;
+	transition: max-height 0.5s ease-in-out;
+   }
+  
+  #plus1{
+	transform: rotate(90deg)
+  }
+  
+  #palidromal:hover , #active:hover , #remission:hover{
+	cursor:pointer;
+  }
+  
+  /*desc fade in*/
+  .fade-in{
+	opacity:0;
+	animation: fadeIn 0.5s ease-in forwards;
+  }
+  
+  @keyframes fadeIn {
+	from {
+	  opacity: 0; 
+	}
+	to {
+	  opacity: 1;
+	}
+  }
+  
+  .home-btn:hover{
+	cursor:pointer;
+	font-weight: bold;
+  }
+
+  /**/
+
+  .placeholder {
+    position: absolute;
+    color: gray; 
+    font-family: 'roboto';
+    /* pointer-events: none;  */
+}
+
+.column.right{
+	outline: none;
+}
+
+@keyframes fontAnimation {
+  0% { 
+    transform: scale(calc(1 + var(--random-scale-x)), calc(1 + var(--random-scale-y))) ; 
+    /* transform-origin: left center;  */
+    font-size: 2em;
+    color: var(--random-color);
+  }
+  100% { 
+    transform: scale(calc(1 + var(--random-scale-x)), calc(1 + var(--random-scale-y))) ; 
+    /* transform-origin: left center;  */
+    font-size: calc(2em + 3 * var(--random));
+    color: var(--random-color);
+  }
+}
+
+@keyframes positionAnimation {
+  0% {
+    transform: translate(
+      calc(var(--random-x) * 100vw), 
+      calc(var(--random-y) * 100vh)  
+    );
+    }
+  100% {
+    transform: translate(
+      calc(var(--random-x) * 100vw), 
+      calc(var(--random-y) * 100vh)  
+    );
+  }
+}
+
+
+@keyframes randompadding {
+  0% {
+    padding: 0;
+  }
+  100% {
+    padding-top: calc(var(--random-padding) * 10px);
+    padding-right: calc(var(--random-padding) * 10px);
+    padding-bottom: calc(var(--random-padding) * 10px);
+    /* padding-left: calc(var(--random-padding) * -10px); */
+  }
+}v
+
+
+
+#editableDiv {
+  font-family: 'diatype';
+  font-size: 3em;
+  font-variation-settings: 'wght' 300; /* Set initial value */
+  /* animation: fontAnimation .5s infinite;  */
+}
+
+.play-animation {
+  animation: fontAnimation .5s infinite; 
+  position: absolute;
+  animation-iteration-count: infinite;
+}
+
+.play-animation2{
+  animation: positionAnimation 3s infinite; 
+}
+
+.play-animation3{
+  animation: randompadding 5s infinite; 
+}
+
+
+/*text effect*/
+/* @keyframes blurEffect {
+    0% {
+        filter: blur(0); 
+    }
+    5% {
+        filter: blur(1); 
+    }
+    15% {
+      filter: blur(2px); 
+    }
+    25% {
+      filter: blur(1px); 
+    }
+    50% {
+      filter: blur(3px); 
+    }
+    65% {
+      filter: blur(1px); 
+    }
+    70% {
+      filter: blur(0.5px); 
+    }
+    100% {
+        filter: blur(0);
+    }
+} */
+
+/* span.typing {
+  animation: blurEffect 10s infinite; 
+} */
+
+/* #placeholder{
+  display: block;
+} */
+
+/*font stretch and condensing effect*/
+/* @keyframes stretchCondense{
+  0% {
+    font-stretch:normal;
+}
+50% {
+  font-stretch: condensed;
+}
+70% {
+  font-stretch:ultra-expanded;
+}
+
+100% {
+  font-stretch:normal;
+}
+}
+
+#remission{
+  animation: stretchCondense 3s infinite;
+} */
