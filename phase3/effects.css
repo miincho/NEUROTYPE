@@ -1,0 +1,270 @@
+:root {
+	--color-bg: black;
+	--color-text-main: white;
+	--color-primary: white;
+	--wrapper-height: 87vh;
+	--image-max-width: 300px;
+	--image-margin: 3rem;
+	--font-family: "diatype";
+	--font-family-header: "diatype";
+  }
+
+
+  * {
+	box-sizing: border-box;
+  }
+  
+  #homepage{
+    opacity: 100;
+    pointer-events: auto;
+  }
+
+  .top1,.top2,.top3,.bottom1,.bottom2,.bottom3{
+    animation: none;
+  }
+
+  body {
+	margin: 0;
+	padding: 0;
+	font-family: var(--font-family);
+	background-color: var(--color-bg);
+	color: var(--color-primary);
+	overflow-x: hidden;
+  }
+  
+  .topRow, .bottomRow{
+    padding: 0;
+  }
+
+  #typesetting-page{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    height: 100vh;
+}
+  
+  .right {
+	  width: 90vw; 
+    height: 80vh; 
+  }
+  
+
+  /*display flex is making the text merge together*/
+  
+  .column.right {
+	  /* display: flex; */
+    justify-content: center;
+    align-self: center;
+    font-size: 5em;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    font-family: Helvetica, sans-serif;
+  }
+
+  .column.right {
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+  }
+  .column.right::-webkit-scrollbar { 
+      display: none; 
+  }
+
+  .placeholder {
+    color: gray; 
+    /* display: flex; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space:nowrap;    
+}
+
+  
+  /*desc fade in*/
+  .fade-in{
+	opacity:0;
+	animation: fadeIn 0.5s ease-in forwards;
+  }
+  
+  @keyframes fadeIn {
+	from {
+	  opacity: 0; 
+	}
+	to {
+	  opacity: 1;
+	}
+  }
+  
+  #home-btn:hover{
+	cursor:pointer;
+	font-weight: bold;
+  }
+
+  /**/
+
+/*text effect*/
+@keyframes blurEffect {
+    0% {
+        filter: blur(0); 
+    }
+    5% {
+        filter: blur(1); 
+    }
+    15% {
+      filter: blur(2px); 
+    }
+    25% {
+      filter: blur(1px); 
+    }
+    50% {
+      filter: blur(3px); 
+    }
+    65% {
+      filter: blur(1px); 
+    }
+    70% {
+      filter: blur(0.5px); 
+    }
+    100% {
+        filter: blur(0);
+    }
+}
+
+span.typing {
+  animation: blurEffect 10s infinite; /* Adjust duration and other properties as needed */
+}
+
+#placeholder{
+  display: block;
+}
+
+
+@keyframes expandSpace {
+  0%, 100% {
+    width: 0;
+  }
+  50% {
+    width: var(--max-width); 
+  }
+}
+
+@keyframes wobble {
+  0%, 100% {
+    transform:rotate(0);
+  }
+  50% {
+    transform:rotate(30deg);
+  }
+}
+
+span.wobble{
+  animation: wobble 0.5s infinite;
+}
+
+.btnspan{
+  margin-right: 15px;
+  border: solid 1px rgb(159, 159, 159);
+  padding: 1.5%;
+  margin-bottom: 6%;
+}
+
+.btnspan:hover{
+  background-color: rgb(159, 159, 159);
+  color: black;
+
+}
+
+.bottom2{
+  white-space: nowrap;
+  margin-bottom: 0.8%;
+}
+
+.bottom1, .bottom2,.bottom3{
+  position: absolute;
+  bottom: 0;
+}
+
+.bottom3{
+  right: 0
+}
+
+.bottom2{
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
+/*active phase*/
+
+@keyframes fontAnimation {
+  0% { 
+    transform: scale(calc(1 + var(--random-scale-x)), calc(1 + var(--random-scale-y))) ; 
+    /* transform-origin: left center;  */
+    font-size: 2em;
+    color: var(--random-color);
+  }
+  100% { 
+    transform: scale(calc(1 + var(--random-scale-x)), calc(1 + var(--random-scale-y))) ; 
+    /* transform-origin: left center;  */
+    font-size: calc(2em + 3 * var(--random));
+    color: var(--random-color);
+  }
+}
+
+@keyframes positionAnimation {
+  0% {
+    transform: translate(
+      calc(var(--random-x) * 100vw), 
+      calc(var(--random-y) * 100vh)  
+    );
+    }
+  100% {
+    transform: translate(
+      calc(var(--random-x) * 100vw), 
+      calc(var(--random-y) * 100vh)  
+    );
+  }
+}
+
+
+@keyframes randompadding {
+  0% {
+    padding: 0;
+  }
+  100% {
+    padding-top: calc(var(--random-padding) * 10px);
+    padding-right: calc(var(--random-padding) * 10px);
+    padding-bottom: calc(var(--random-padding) * 10px);
+    /* padding-left: calc(var(--random-padding) * -10px); */
+  }
+}
+
+@keyframes randombg {
+  0% {
+    background-color: black; /* Start with black background */
+  }
+  50%, 75%, 100% {
+    background-color: var(--random-bg1); /* Flash between glitch color 1 */
+  }
+  60%, 80% {
+    background-color: var(--random-bg2); /* Flash between glitch color 2 */
+  }
+}
+
+.play-animation {
+  animation: fontAnimation .5s infinite; 
+  position: absolute;
+  animation-iteration-count: infinite;
+}
+
+.play-animation2{
+  animation: positionAnimation 3s infinite; 
+}
+
+.play-animation3{
+  animation: randompadding 5s infinite; 
+}
+
+.play-animation4{
+  animation: randombg 0.5s infinite; 
+}
