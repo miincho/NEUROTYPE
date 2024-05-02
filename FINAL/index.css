@@ -31,6 +31,7 @@ a {
   }
   
   .title{
+    font-family:"helvetica";
     display:flex;
     justify-content: center;
     align-items: center;
@@ -146,3 +147,36 @@ a {
       70% { transform: translate(0, 1.5px); }
       100%   { transform: translate(0, 0px); }    
   }
+
+    /*text effect*/
+    @keyframes blurEffect {
+      0% {
+          filter: blur(0); 
+      }
+      5% {
+          filter: blur(1); 
+      }
+      15% {
+        filter: blur(2px); 
+      }
+      25% {
+        filter: blur(1px); 
+      }
+      50% {
+        filter: blur(3px); 
+      }
+      65% {
+        filter: blur(1px); 
+      }
+      70% {
+        filter: blur(0.5px); 
+      }
+      100% {
+          filter: blur(0);
+      }
+  }
+  
+  span.typing {
+    animation: blurEffect 10s infinite; /* Adjust duration and other properties as needed */
+  }
+  
