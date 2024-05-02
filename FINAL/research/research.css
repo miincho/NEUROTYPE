@@ -1,0 +1,137 @@
+:root {
+    --color-bg: black;
+    --color-text-main: white;
+    --color-primary: white;
+    --wrapper-height: 87vh;
+    --image-max-width: 300px;
+    --image-margin: 3rem;
+    --font-family: "HK Grotesk";
+    --font-family-header: "HK Grotesk";
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica;
+    background-color: var(--color-bg);
+    color: white;
+    overflow-x: hidden;
+  }
+  
+  .info{
+    color:black;
+    padding:3vh;
+  }
+  
+  .info-title{
+    font-size:8vw;
+    text-align:center;
+    justify-content: center; 
+  }
+  
+  .title-container{
+    width:100%;
+    height:100%;
+    overflow:none;
+    text-align:left;
+    
+  }
+  
+  .title {
+    position: absolute;
+      bottom: 0;
+      left: 0;
+    animation: stretch 2s ease;
+    transform-origin: left bottom; /* Anchor transformation to the left */
+  
+  }
+  
+  @keyframes stretch {
+    0% {
+      transform: scale(1, 1);
+    }
+  
+    50% {
+      transform: scale(19, 40);
+    }
+    100% {
+      transform: scale(1, 1);
+    }
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+    justify-content: center; 
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 5vh; 
+    display: none;
+    overflow: visible
+  }
+  
+  .rect {
+    width: 100vw;
+    height: 30vh;
+    background-color: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+      
+  }
+  
+  .container.visible {
+    display: block; /* Show after the animation */
+  }
+  
+  .rect.clicked {
+    height: 100vh; /* Expand to full view height when clicked */
+    overflow-y: auto;
+  }
+  
+  .yellow{
+    background-color:#F9FB00;
+  }
+  .cyan{
+    background-color:#02FEFF;
+  }
+  .magenta{
+    background-color:#FD00FB;
+  }
+  .green{
+    background-color:#01FF00;
+  }
+  
+  /*text effect*/
+  @keyframes blurEffect {
+      0% {
+          filter: blur(0); 
+      }
+      5% {
+          filter: blur(1); 
+      }
+      15% {
+        filter: blur(2px); 
+      }
+      25% {
+        filter: blur(1px); 
+      }
+      50% {
+        filter: blur(3px); 
+      }
+      65% {
+        filter: blur(1px); 
+      }
+      70% {
+        filter: blur(0.5px); 
+      }
+      100% {
+          filter: blur(0);
+      }
+  }
+  
+  span.typing {
+    animation: blurEffect 10s infinite; /* Adjust duration and other properties as needed */
+  }
+  

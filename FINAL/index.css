@@ -4,6 +4,34 @@
     font-weight: 200 700;
     font-display: swap;
 }
+@font-face {
+  font-family: 'synt';
+  src: url('/fonts/abcsynt-regularitalic-trial-webfont.woff2') format('woff2'),
+       url('/fonts/abcsynt-regularitalic-trial-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'montreal';
+  src: url('/fonts/ppneuemontreal-book-webfont.woff2') format('woff2'),
+       url('/fonts/ppneuemontreal-book-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'editorial';
+  src: url('/fonts/ppeditorialold-italic-webfont.woff2') format('woff2'),
+       url('/fonts/ppeditorialold-italic-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'pixel';
+  src: url('/fonts/ArgentPixelCF-Italic.woff2') format('woff2'),
+       url('/fonts/ArgentPixelCF-Italic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
 :root {
     --color-bg: black;
