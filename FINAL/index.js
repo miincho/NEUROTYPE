@@ -17,3 +17,5 @@ document.addEventListener("DOMContentLoaded", function() {
     typepage.style.opacity = "1";
   });
 });
+
+

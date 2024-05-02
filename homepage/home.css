@@ -1,10 +1,3 @@
-@font-face{
-    font-family: 'diatype';
-    src: url('/fonts/ABCDiatypeMonoVariable-Trial.woff2') format('woff2-variations');
-    font-weight: 200 700;
-    font-display: swap;
-}
-
 :root {
     --color-bg: black;
     --color-text-main: white;
@@ -12,26 +5,20 @@
     --wrapper-height: 87vh;
     --image-max-width: 300px;
     --image-margin: 3rem;
-    --font-family: "diatype";
-    --font-family-header: "diatype";
+    --font-family: "HK Grotesk";
+    --font-family-header: "HK Grotesk";
   }
   
-a {
-    text-decoration: none;
-    color:inherit;
-}
-
   body {
     margin: 0;
     padding: 0;
-    font-family: "diatype";
+    font-family: Helvetica;
     background-color: var(--color-bg);
-    color: var(--color-text-main);
+    color: white;
     overflow-x: hidden;
   }
   
   .title{
-    font-family:"helvetica";
     display:flex;
     justify-content: center;
     align-items: center;
@@ -63,7 +50,11 @@ a {
     }
   }
   
-
+  /* #landing-page.hidden {
+    opacity: 0;
+    pointer-events: none;
+  } */
+  
   /* Hide the homepage container initially */
   .hidden {
     opacity: 0;
@@ -72,6 +63,16 @@ a {
   }
   
   #homepage{
+    opacity: 0;
+    pointer-events: auto;
+  }
+  
+  #typesetting-page{
+    opacity: 0;
+    pointer-events: auto;
+  }
+  
+  #goal-page{
     opacity: 0;
     pointer-events: auto;
   }
@@ -142,14 +143,14 @@ a {
   
   @keyframes floating {
       0% { transform: translate(0,  0px); }
-      20% { transform: translate(0px, 1.5px); }
-      50%  { transform: translate(0.5px, 0px); }
-      70% { transform: translate(0, 1.5px); }
-      100%   { transform: translate(0, 0px); }    
+      20% { transform: translate(0px, 6px); }
+      50%  { transform: translate(2px, 0px); }
+      70% { transform: translate(0, 6px); }
+      100%   { transform: translate(0, -0px); }    
   }
-
-    /*text effect*/
-    @keyframes blurEffect {
+  
+  /*text effect*/
+  @keyframes blurEffect {
       0% {
           filter: blur(0); 
       }
