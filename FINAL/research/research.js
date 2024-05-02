@@ -67,7 +67,7 @@ document.addEventListener("mouseover", function() {
 
     // Apply a random font family to a span
     function applyRandomFont(span) {
-        const fonts = ["Georgia", "Times", "Helvetica"];
+        const fonts = ["synt", "editorial", "pixel", "montreal", "Helvetica"];
         const randomIndex = Math.floor(Math.random() * fonts.length);
         span.style.fontFamily = fonts[randomIndex];
         span.style.transition = "font-family 0.3s ease";
