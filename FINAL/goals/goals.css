@@ -1,0 +1,86 @@
+@font-face{
+    font-family: 'diatype';
+    src: url('/fonts/ABCDiatypeMonoVariable-Trial.woff2') format('woff2-variations');
+    font-weight: 200 700;
+    font-display: swap;
+}
+@font-face {
+  font-family: 'synt';
+  src: url('/fonts/abcsynt-regularitalic-trial-webfont.woff2') format('woff2'),
+       url('/fonts/abcsynt-regularitalic-trial-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'montreal';
+  src: url('/fonts/ppneuemontreal-book-webfont.woff2') format('woff2'),
+       url('/fonts/ppneuemontreal-book-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'editorial';
+  src: url('/fonts/ppeditorialold-italic-webfont.woff2') format('woff2'),
+       url('/fonts/ppeditorialold-italic-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'pixel';
+  src: url('/fonts/ArgentPixelCF-Italic.woff2') format('woff2'),
+       url('/fonts/ArgentPixelCF-Italic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+    --color-bg: black;
+    --color-text-main: white;
+    --color-primary: white;
+    --wrapper-height: 87vh;
+    --image-max-width: 300px;
+    --image-margin: 3rem;
+    --font-family: "diatype";
+    --font-family-header: "diatype";
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica;
+    background-color: var(--color-bg);
+    color: white;
+    overflow-x: hidden;
+  }
+  
+  
+  .title-container{
+    width:100%;
+    height:100%;
+    overflow:none;
+    text-align:left;
+    
+  }
+  
+  .title {
+    position: absolute;
+      top: 0;
+      left: 0;
+    animation: stretch 2s ease;
+    transform-origin: left top; /* Anchor transformation to the left */
+  
+  }
+  
+  @keyframes stretch {
+    0% {
+      transform: scale(1, 1);
+    }
+  
+    50% {
+      transform: scale(17, 40);
+    }
+    100% {
+      transform: scale(1, 1);
+    }
+  }
+  
