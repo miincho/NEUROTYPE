@@ -196,14 +196,14 @@ function padding(span) {
   }, delay * 1000);
 }
 
-// function wobble(span) {
-//   const delay = Math.random() * 10; 
-//   setTimeout(() => {
-//       const randomAnimationStart = Math.random() * 10; 
-//       span.style.animationDelay = `-${randomAnimationStart}%`; 
-//       span.classList.add('play-animation4'); 
-//   }, delay * 1000);
-// }
+function wobble(span) {
+  const delay = Math.random() * 10; 
+  setTimeout(() => {
+      const randomAnimationStart = Math.random() * 10; 
+      span.style.animationDelay = `-${randomAnimationStart}%`; 
+      span.classList.add('play-animation4'); 
+  }, delay * 1000);
+}
 
 //2 modes switch btwn random & converge
 function randomTranslate(span) {
@@ -257,7 +257,7 @@ function toggleTranslation() {
     firstGlitchEffect(span);
     positionEffect(span);
     padding(span);
-    // wobble(span);
+    wobble(span);
   });
 }
 
@@ -389,6 +389,9 @@ function effect3(splitText) {
 
   // Clear existing content of the text element
   text.classList.remove(".play-animation");
+  text.classList.remove(".play-animation2");
+  text.classList.remove(".play-animation3");
+  text.classList.remove(".play-animation4");
   text.textContent = '';
   
 
