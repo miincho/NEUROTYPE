@@ -1,3 +1,7 @@
+::selection {
+  filter: invert(100%);
+}
+
 body::-webkit-scrollbar {
   display: none;
 }
@@ -8,7 +12,7 @@ body {
 }
 
 #bgCanvas{
-  /* background-color: aqua; */
+  background-color: black;
   position: absolute;
   top: 0;
   left: 0;
@@ -84,6 +88,11 @@ body {
     -ms-overflow-style: none; 
     scrollbar-width: none; 
   }
+
+  .column.right:hover{
+    cursor: pointer;
+  }
+
   .column.right::-webkit-scrollbar { 
       display: none; 
   }
@@ -97,6 +106,7 @@ body {
     transform: translate(-50%, -50%);
     white-space:nowrap;    
 }
+
 
   
   /*desc fade in*/

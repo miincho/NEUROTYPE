@@ -71,7 +71,7 @@ function textSplit(textContent){
 //change to random font size on hover
 function randomSize(e) {
   e.addEventListener("mouseover", function(){
-      const randomSize = Math.floor(Math.random() * 85) +40;
+      const randomSize = Math.floor(Math.random() * 85) +20;
       e.style.fontSize = randomSize + "px";
       e.style.transition = "font-size 0.3s ease"; 
   });
@@ -104,12 +104,12 @@ function applyRandomFont(span) {
 function flickThroughFonts() {
   const spans = document.querySelectorAll('#editableDiv span');
   const spansArray = Array.from(spans);
-  const randomSubset = getRandomSubset(spansArray, 0.60);
+  const randomSubset = getRandomSubset(spansArray, 0.40);
   setInterval(() => {
     randomSubset.forEach(span => {
       applyRandomFont(span);
     });
-  }, 5000);
+  }, 7000);
 }
 
 function getRandomSubset(array, ratio) {
@@ -140,7 +140,6 @@ function setRandomValues() {
   const randomScaleX = getRandomNumber(-1, 5);
   const randomScaleY = getRandomNumber(0, 5);
   const randomPadding = getRandomNumber(-50, 50);
-
   document.documentElement.style.setProperty('--random', randomFontSize);
   document.documentElement.style.setProperty('--random-scale-x', randomScaleX);
   document.documentElement.style.setProperty('--random-scale-y', randomScaleY);
@@ -290,6 +289,21 @@ function fillViewportWithHallucinations() {
   }
 }
 
+//canvas bg start and stop functions
+function startCanvasAnimation() {
+  // Create initial set of rectangles
+  for (let i = 0; i < 150; i++) {
+      rectangles.push(createRectangle());
+  }
+  draw();
+}
+
+function stopCanvasAnimation() {
+  // clear all rectangles and clear canvas
+  rectangles.length = 0;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
 /////////////////////////////////////////////////////////*timing the effects*/ 
 
 let effect1Timer;
@@ -339,18 +353,20 @@ function effect1() {
 }
 
 function effect2() {
+  startCanvasAnimation();
   setRandomValues();
   const randomValuesInterval = setInterval(setRandomValues, 1000);
   toggleTranslation();
   const toggleTranslationInterval = setInterval(toggleTranslation, Math.random() * 9000 + 3000);
   setTimeout(() => {
     fillViewportWithHallucinations();
-    const hallucinationsInterval = setInterval(fillViewportWithHallucinations, Math.random() * 9000 + 5000);
+    const hallucinationsInterval = setInterval(fillViewportWithHallucinations, Math.random() * 2900 + 2000);
     
     setTimeout(() => {
       clearInterval(toggleTranslationInterval);
       clearInterval(hallucinationsInterval);
       clearInterval(randomValuesInterval);
+      stopCanvasAnimation();
       console.log("everything disabled after 30 seconds.");
     }, 30000);
   }, 3000);
@@ -403,6 +419,7 @@ convertbtn.addEventListener("click", () => {
   //disable after click to prevent effects stacking
   convertbtn.disabled = true;
   buttonClicked = true; 
+  text.contentEditable = false;
 
   //1 minute timer
   let timeLeft = 60;
@@ -439,7 +456,88 @@ convertbtn.addEventListener("click", () => {
   }, 15000);
 });
 
-//reset button not working yet
+//////////////////////////////////////////////////////////////canvas background
+const canvas = document.getElementById('bgCanvas');
+const ctx = canvas.getContext('2d');
+const glitchColors = ["#ffffff", "#f9fb00", "#02feff", "#01ff00", "#fd00fb", "#fb0102", "#0301fc", "#000000"];
+const rectangles = [];
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+function randomRange(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+//creating rectangles
+function createRectangle() {
+    const initialY = Math.random() < 0.5 ? 0 : canvas.height; // Randomly choose top or bottom of the canvas
+    return {
+        x: -20, //starting position
+        y: randomRange(0, canvas.height),
+        originalY: initialY, // Store the original y position for glitch effect
+        width: randomRange(1, 3), //random width
+        height: randomRange(20, 800), //random height
+        color: glitchColors[Math.floor(Math.random() * glitchColors.length)],
+        speed: randomRange(3, 3),//random speed
+        glitchTimer: randomRange(3000, 5000), //interval for glitch effect (3 to 5 seconds)
+        glitchStart: Date.now()
+    };
+}
+
+// Function to update and draw the rectangles
+let animationPaused = false;
+
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    if (!animationPaused) {
+        rectangles.forEach(rect => {
+            const currentTime = Date.now();
+            const elapsedTime = currentTime - rect.glitchStart;
+
+            //randomly toggle between top and bottom of canvas based on elapsed time
+            if (elapsedTime > rect.glitchTimer) {
+                rect.originalY = rect.originalY === 0 ? canvas.height : 0; 
+                rect.glitchStart = currentTime;
+            }
+
+            //probability for randomly moving left or right
+            if (Math.random() < 0.01) { 
+                rect.direction = rect.direction === 'left' ? 'right' : 'left';
+            }
+            if (rect.direction === 'left') {
+                rect.x -= rect.speed; 
+            } else {
+                rect.x += rect.speed;
+            }
+
+            ctx.fillStyle = rect.color;
+            ctx.fillRect(rect.x, rect.y, rect.width, rect.height);
+
+            // Reset to original y position after a short delay
+            if (elapsedTime > rect.glitchTimer / 2) {
+                rect.y = rect.originalY;
+            }
+
+            // Recycle rectangle if it goes beyond the canvas width -> based on direction
+            if (rect.x > canvas.width || rect.x + rect.width < 0) {
+                rect.x = rect.direction === 'left' ? canvas.width : -rect.width;
+                rect.y = randomRange(0, canvas.height);
+            }
+        });
+    }
+    requestAnimationFrame(draw);
+    //randomly pause and start
+    setTimeout(() => {
+        animationPaused = true; 
+        setTimeout(() => {
+            animationPaused = false; 
+        }, 4000); // Restart delay 
+    }, randomRange(5000, 8000)); // Pause interval
+}
+
+//reset button not working yet // might just set the button to refresh the page lol
 const reset = document.getElementById("reset");
 reset.addEventListener("click", ()=>{
   text.textContent = " ";
