@@ -1,4 +1,4 @@
-@font-face{
+/* @font-face{
     font-family: 'diatype';
     src: url('/fonts/ABCDiatypeMonoVariable-Trial.woff2') format('woff2-variations');
     font-weight: 200 700;
@@ -67,7 +67,7 @@
       top: 0;
       left: 0;
     animation: stretch 2s ease;
-    transform-origin: left top; /* Anchor transformation to the left */
+    transform-origin: left top; 
   
   }
   
@@ -82,5 +82,135 @@
     100% {
       transform: scale(1, 1);
     }
+  } */
+  
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    text-align: left;
+    width: 100vw;
+    height: 100vh;
+    font-size: 18px;
+    font-family: sans-serif;
+    color: cornsilk;
+    background-color: black;
+    overflow: hidden;
   }
   
+  #title {
+    font-size: 6rem;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+  
+  #container {
+    width: 100vw;
+    height: 100vh;
+    padding: 10px;
+  }
+  
+  #centerContainer {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  #center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 8em;
+    letter-spacing: -2px;
+    /* transform: scale(1, 1);
+    -webkit-transition: -webkit-transform 0.3s;
+     -moz-transition:    -moz-transform 0.3s;
+       -o-transition:      -o-transform 0.3s;
+          transition:         transform 0.3s; */
+    line-height: 0.9em;
+  }
+  
+  
+  
+  #field {
+    width: calc(100vw - 40px);
+    height: calc(100vh - 40px);
+    column-count: 12;
+    column-gap: 20px;
+    column-fill: balance;
+    position: fixed;
+    padding: 20px;
+    top: 0;
+    left: 0;
+    line-height: 1.2em;
+    text-align: justify;
+    transition: all 0.5s;
+  }
+  
+  
+  #clockContainer {
+    width: 70px;
+    height: 70px;
+    bottom: 5px;
+    right: 5px;
+    position: fixed;
+    display: inline-block;
+    cursor: pointer;
+    z-index: 2;
+  }
+  
+  #vertical {
+    width: 12px;
+    height: 70px;
+    background-color: cornsilk;
+    position: absolute;
+    left: 29px;
+  }
+  
+  #horizontal{
+    width: 70px;
+    height: 12px;
+    position: absolute;
+    top: 29px;
+    background-color: cornsilk;
+  }
+  #mute-btn {
+    color: cornsilk;
+    position: fixed;
+    padding: 25px;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  #mute-btn:hover {
+    color: black;
+    background-color: cornsilk;
+  }
+  
+  #nav {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 0px;
+    height: 100vh;
+    border: 0;
+    transition: 0.25s;
+    z-index: 1;
+    border-radius: 2px;
+  }
+  
+  .showNav {
+    width: 400px!important;
+  }
+  
+  .navClock {
+    background-color: cornsilk!important;
+  }
