@@ -470,7 +470,7 @@ convertbtn.addEventListener("click", () => {
   }, 1000); // Update timer every second
 
   effect1(); 
-  startSpan.textContent = "PHASE 1: PALIDROMAL";
+  startSpan.textContent = "PHASE 1: PRODROMAL";
 
   setTimeout(() => {
     effect2();
