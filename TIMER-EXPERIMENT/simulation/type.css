@@ -8,7 +8,7 @@ body {
 }
 
 #bgCanvas{
-  background-color: aqua;
+  /* background-color: aqua; */
   position: absolute;
   top: 0;
   left: 0;

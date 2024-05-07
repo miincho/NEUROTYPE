@@ -106,7 +106,7 @@ function flickThroughFonts() {
   const spansArray = Array.from(spans);
   const randomSubset = getRandomSubset(spansArray, 0.60);
   setInterval(() => {
-    randomSubset.forEach(span => { //iterate random subset
+    randomSubset.forEach(span => {
       applyRandomFont(span);
     });
   }, 5000);
@@ -128,16 +128,6 @@ function randomBlur(span) {
   }, delay * 1000);
 }
 
-//adding wobble dynamically
-function randomWob(span) {
-  const delay = Math.random() * 10; 
-  setTimeout(() => {
-      const randomAnimationStart = Math.random() * 10; 
-      span.style.animationDelay = `-${randomAnimationStart}%`; 
-      span.classList.add('wobble'); 
-  }, delay * 1000);
-}
-
 ///////////////////////////////////////////////////////////////////////////*active phase*/ 
 
 /*css randomizer*/
@@ -155,10 +145,7 @@ function setRandomValues() {
   document.documentElement.style.setProperty('--random-scale-x', randomScaleX);
   document.documentElement.style.setProperty('--random-scale-y', randomScaleY);
   document.documentElement.style.setProperty('--random-padding', randomPadding);
-
 }
-// setRandomValues()
-// setInterval(setRandomValues, 1000); 
 
 function randomColor() {
   const randomColorIndex = Math.floor(Math.random() * glitch_colors.length);
@@ -220,7 +207,7 @@ function convergingTranslate() {
   document.documentElement.style.setProperty('--random-y', randomY);
 }
 
-//split the text
+//split the text //not sure why this has to be repeated, but doesnt work if not includeed
 function textSplit(textContent){
   let splitText= textContent.trim().split(' ');
   return splitText;
@@ -241,7 +228,6 @@ function createSpans(textContent) {
 //toggles btwn 2 modes
 function toggleTranslation() {
   createSpans(text.textContent); 
-
   const spans = text.querySelectorAll('span');
   spans.forEach(span => {
     const randomNumber = Math.random();
@@ -319,11 +305,11 @@ function effect1() {
     span.textContent = letter + ' ';
     text.appendChild(span);
 
-    // Create and style random spaces
+    // Create and style random spaces btwn words
     if (addSpacing() && index < splitText.length - 1) {
       const spaceCount = Math.floor(Math.random() * 8) + 1;
       const space = document.createElement('span');
-      space.textContent = '  '.repeat(spaceCount); // non-breaking spaces
+      space.textContent = '  '.repeat(spaceCount);
       space.style.display = 'inline-block';
       space.style.width = '0';
       space.style.height = '0';
@@ -333,25 +319,19 @@ function effect1() {
       // Generate a new random max-width for each space span
       const maxSpaceWidth = Math.floor(Math.random() * 20) + 5;
       space.style.setProperty('--max-width', `${maxSpaceWidth}px`);
-
       text.appendChild(space);
     }
-
     randomSize(span);
     randomBlur(span);
   });
 
   flickThroughFonts();
 
-  // Clear effect2Timer before running effect1
+  //clearing any previous effects and setting timer
   clearInterval(effect2Timer);
-
-  // Run effect1 for 15 seconds
   effect1Timer = setInterval(() => {
     console.log("Running effect1...");
   }, 1000);
-
-  // Disable effect1 after 15 seconds
   setTimeout(() => {
     clearInterval(effect1Timer);
     console.log("Effect1 disabled after 15 seconds.");
@@ -361,10 +341,8 @@ function effect1() {
 function effect2() {
   setRandomValues();
   const randomValuesInterval = setInterval(setRandomValues, 1000);
-    
   toggleTranslation();
   const toggleTranslationInterval = setInterval(toggleTranslation, Math.random() * 9000 + 3000);
-
   setTimeout(() => {
     fillViewportWithHallucinations();
     const hallucinationsInterval = setInterval(fillViewportWithHallucinations, Math.random() * 9000 + 5000);
@@ -373,50 +351,34 @@ function effect2() {
       clearInterval(toggleTranslationInterval);
       clearInterval(hallucinationsInterval);
       clearInterval(randomValuesInterval);
-      // text.textContent = ''; 
       console.log("everything disabled after 30 seconds.");
     }, 30000);
-
   }, 3000);
-
-  console.log("text toggled");
 }
 
 
 function effect3(splitText) {
-  clearInterval(effect2Timer); // Clear any running timers from effect2
+  clearInterval(effect2Timer);
   console.log("Effect 3 started");
 
-  // Clear existing content of the text element
+  //clear existing content of the text element
   text.classList.remove(".play-animation");
-  // text.classList.remove(".play-animation2");
-  // text.classList.remove(".play-animation3");
-  // text.classList.remove(".play-animation4");
   text.textContent = '';
   
-
-  // Append spans and apply effects to each word in splitText
+  //append spans and apply effects to each word in splitText
   splitText.forEach((word, index) => {
     const span = document.createElement('span');
-    span.textContent = word + ' '; // Include a space after each word
+    span.textContent = word + ' '; 
     text.appendChild(span);
 
     span.classList.remove(".play-animation");
-    // span.classList.remove(".play-animation2");
-    // span.classList.remove(".play-animation3");
-    // span.classList.remove(".play-animation4");
-
     span.style.position= "static";
-    // Apply styles to the span element
-    // span.style.position = "static"; // Example style
-    // span.style.zIndex = "1000";
-    // span.style.color = "white";
 
-    // Create and style random spaces between words
+    //random space between words
     if (addSpacing() && index < splitText.length - 1) {
       const spaceCount = Math.floor(Math.random() * 8) + 1;
       const space = document.createElement('span');
-      space.textContent = '  '.repeat(spaceCount); // Create non-breaking spaces
+      space.textContent = '  '.repeat(spaceCount);
       space.style.display = 'inline-block';
       space.style.width = '0';
       space.style.height = '0';
@@ -426,8 +388,6 @@ function effect3(splitText) {
       space.style.setProperty('--max-width', `${maxSpaceWidth}px`);
       text.appendChild(space);
     }
-
-    // Apply blur effect to each word
     randomBlur(span);
   });
 }
@@ -436,60 +396,50 @@ let timer = document.getElementById("timer");
 let startSpan = document.getElementById("start");
 let buttonClicked = false;
 
-// Event listener on button click
 convertbtn.addEventListener("click", () => {
-    if (buttonClicked) {
-      return; // Exit early if button is already disabled
-  }
+  // Exit early if button is already disabled
+    if (buttonClicked) {return};
 
-  // Disable the button to prevent further clicks
+  //disable after click to prevent effects stacking
   convertbtn.disabled = true;
-  buttonClicked = true; // Update buttonClicked flag
+  buttonClicked = true; 
 
   //1 minute timer
   let timeLeft = 60;
-  // Update timer display every second
   const countdownInterval = setInterval(() => {
       const minutes = Math.floor(timeLeft / 60);
       const seconds = timeLeft % 60;
 
-      // Format seconds to always have two digits (e.g., 05, 10, 59)
+      //format seconds to always have two digits
       const formattedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
-
-      // Update timer text content
       timer.textContent = `${minutes}:${formattedSeconds}`;
-
-      // Decrease timeLeft by 1 second
       timeLeft--;
 
-      // If countdown reaches zero, stop the interval
+      //if countdown reaches zero, stop the interval and display text
       if (timeLeft < 0) {
           clearInterval(countdownInterval);
-          timer.textContent = "0:00"; // Optionally show 0:00 when countdown ends
+          timer.textContent = "0:00";
       }
-  }, 1000); // Update timer every second
+  }, 1000);
 
+  //displaying the phase names with the timer
   effect1(); 
   startSpan.textContent = "PHASE 1: PRODROMAL";
-
   setTimeout(() => {
     effect2();
     startSpan.textContent = "PHASE 2: ACTIVE";
-
     setTimeout(() => {
       const originalTextContent = text.textContent.trim(); 
       const splitText = textSplit(originalTextContent);
       startSpan.textContent = "PHASE 3: REMISSION";
-      // Clear text content and reinsert original text split into spans with effect3
+      //effect 3 clears text content and reinserts original text
       text.textContent = ''; 
       effect3(splitText);
-
-    }, 30000); //phase 2 is 30 seconds
-
-  }, 15000);  //phase 2 begins after 15 seconds
+    }, 30000); 
+  }, 15000);
 });
 
-
+//reset button not working yet
 const reset = document.getElementById("reset");
 reset.addEventListener("click", ()=>{
   text.textContent = " ";
