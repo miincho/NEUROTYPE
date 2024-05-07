@@ -7,6 +7,16 @@ body {
   scrollbar-width: none;
 }
 
+#bgCanvas{
+  background-color: aqua;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
 :root {
 	--color-bg: black;
 	--color-text-main: white;
@@ -267,11 +277,8 @@ span.typing {
   0% {
     background-color: black; /* Start with black background */
   }
-  50%, 75%, 100% {
+  100% {
     background-color: var(--random-bg1); /* Flash between glitch color 1 */
-  }
-  60%, 80% {
-    background-color: var(--random-bg2); /* Flash between glitch color 2 */
   }
 }
 
@@ -291,4 +298,8 @@ span.typing {
 
 .play-animation4{
   animation: wobble 0.1s infinite; 
+}
+
+.background-animation{
+
 }
