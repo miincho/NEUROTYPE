@@ -38,7 +38,7 @@ body {
   }
   
   #homepage{
-    opacity: 100;
+    opacity: 0.2;
     pointer-events: auto;
   }
 
