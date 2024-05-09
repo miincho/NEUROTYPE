@@ -12,19 +12,41 @@
 </head>
 <body>
     
-    <a-scene fog="type: exponential; color: #CDBFD1; density: 0.1;" text-updater>
+    <a-scene fog="type: exponential; color: #000000; density: 0.05;" text-updater>
     <!-- <a-scene text-updater> -->
         <!-- CAMERA STARTING POSITION -->
-        <a-entity camera="" position="2.7307 1.6 23.47182" wasd-controls="" rotation="-11.688339020668801 15.355268909506073 0" look-controls="" aframe-injected="" data-aframe-inspector-original-camera=""></a-entity>
-        
+        <a-entity camera="" wasd-controls="acceleration:  40" position="-0.84601 3 31.32966" wasd-controls="" rotation="" look-controls="" aframe-injected="" data-aframe-inspector-original-camera=""></a-entity>        
+        <!-- <a-sphere position="-0.84601 1.6 31.32966" color="yellow" radius="5" material="" geometry="radius: 0.5"></a-sphere> -->
+
         <!-- THE FLOOR -->
-        <a-plane position="0 0 -3" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" material="color: #000000" geometry="" scale="20 20 1"></a-plane> 
-        
+        <a-plane position="0 0 -25.69936" rotation="-90 0 0" width="4" height="4" color="#000000" material="" geometry="" scale="35 35 1"></a-plane>
+
         <!-- THE SKY -->
         <a-sky color="#ECECEC"></a-sky>
 
         <!-- INITIAL TEXT -->
-        <a-entity id="textEntity" position="-1.95285 0.85557 17.9629" text-geometry="height: 0.1; value: What's on your mind?" material="color: #000000" text-updater=""></a-entity>    </a-scene>
+        <a-entity id="textEntity" position="-4.44348 3 22.52595" text-geometry="height: 0.1; value: What's on your mind?" material="color: #EAEAEA" text-updater=""></a-entity>
+
+        <!-- PHASE 1 VIDEOS -->
+        <a-video src="videos/Compressed/gogh-paragraph-1.mov" autoplay="" loop="true" width="16" height="10" position="-16.82396 6.65794 23.81497" material="" geometry="" rotation="0 90 0" scale="1.5 1.5 1.5"></a-video>    
+        <a-video src="videos/Compressed/gogh-paragraph-1.mov" id="top" autoplay="" loop="true" width="16" height="10" position="-1.12681 14.02035 24.81716" material="" geometry="" rotation="90 0 0" scale="2 2.2 1.5"></a-video>
+        <a-video src="videos/Compressed/gogh-sentence-1.mp4" autoplay="" loop="true" width="16" height="10" position="-1.31013 4.12996 35.78818" material="" geometry="" rotation="0 180 0" scale="2 2 2"></a-video>      
+        <a-video src="videos/Compressed/taylor-paragraph-1.mov" autoplay="" loop="true" width="16" height="11" position="14.4748 6.09597 23.81497" material="" geometry="" rotation="0 90 0" scale="1.5 1.5 1.5"></a-video>
+
+        <!-- PHASE 2 VIDEOS -->
+        <a-video src="videos/Compressed/gogh-paragraph-2.mov" id="two" autoplay="" loop="true" width="16" height="11" position="14.4748 6.09597 0.03903" material="" geometry="" rotation="0 -90 0" scale="1.5 1.5 1.5"></a-video>
+        <a-video src="videos/Compressed/taylor-paragraph-2.mov" id="two-taylor" autoplay="" loop="true" width="16" height="11" position="-16.891 6.09597 -0.02495" material="" geometry="" rotation="0 90 0" scale="1.5 1.5 1.5"></a-video>
+        <a-video src="videos/Compressed/gogh-phrase-2.mov" id="two-top" autoplay="" loop="true" width="16" height="11" position="-1.33782 14.1 1.84992" material="" geometry="" rotation="90 0 0" scale="2 2.2 1.5"></a-video>
+        <a-video src="videos/Compressed/gogh-phrase-2.mov" id="" autoplay="" loop="true" width="16" height="11" position="-1.09273 14.1 -23.47607" material="" geometry="" rotation="-90 0 0" scale="2 2.5 1.5"></a-video>        
+        <a-video src="videos/Compressed/gogh-phrase-2.mov" autoplay="" loop="true" width="16" height="11" position="-17.03446 10.3685 -26.98955" material="" geometry="" rotation="0 90 0" scale="2 2.2 1.5"></a-video>        
+        <a-video src="videos/Compressed/taylor-sentence-2.mov" autoplay="" loop="true" width="16" height="11" position="14.52521 10.3685 -26.98955" material="" geometry="" rotation="0 90 0" scale="2 2 1.5"></a-video>
+
+        <!-- PHASE 3 VIDEOS -->
+        <a-video src="videos/Compressed/gogh-phrase-3.mov" id="" autoplay="" loop="true" width="16" height="111" position="-1.09273 14.1 -64.29334" material="" geometry="height: 11" rotation="-90 0 0" scale="2 5 1.5"></a-video>
+        <a-video src="videos/Compressed/taylor-paragraph-3.5.mp4" id="taylor35" autoplay="" loop="true" width="16" height="11" position="14.52521 3.69917 -59.02123" material="" geometry="" rotation="0 90 0" scale="2 2 1.5"></a-video>
+        <a-video src="videos/Compressed/gogh-word-1.mp4" id="gogh3" autoplay="" loop="true" width="16" height="11" position="-16.72364 3.69917 -58.64431" material="" geometry="" rotation="0 90 0" scale="2 2 1.5"></a-video>        
+        <a-video src="videos/Compressed/taylor-sentence-1.mov" id="tay" autoplay="" loop="true" width="16" height="11" position="-1.22007 3.69917 -74.28957" material="" geometry="" rotation="" scale="2 2 1.5"></a-video>    
+    </a-scene>
 
 </body>
 </html>
