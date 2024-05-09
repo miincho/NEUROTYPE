@@ -1,4 +1,4 @@
-/* @font-face{
+@font-face{
     font-family: 'diatype';
     src: url('/fonts/ABCDiatypeMonoVariable-Trial.woff2') format('woff2-variations');
     font-weight: 200 700;
@@ -52,25 +52,257 @@
     color: white;
     overflow-x: hidden;
   }
+
+  .topRow {
+    color: white; 
+    width: 100%;
+    height: auto; 
+    position: relative; 
+    z-index:3;
+    display: none;
+    overflow: visible;
+    
+  }
+  .topRow.visible {
+    display: flex;
+}
+
+  .top1 {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+  }
   
+  .top1 a {
+    display: block; 
+    padding: 5px; 
+    text-decoration: none; 
+    color: white; 
+    font-size:1rem;
+    font-weight: bold; 
+  }
   
+
   .title-container{
     width:100%;
     height:100%;
-    overflow:none;
+    overflow:hidden;
     text-align:left;
-    
+    z-index:1;
   }
-  
-  .title {
+
+.title {
     position: absolute;
       top: 0;
       left: 0;
     animation: stretch 2s ease;
     transform-origin: left top; 
+ }
   
+
+  .text-container {
+    width: 100vw;
+    height: 100vh; 
+    position: absolute;
+    align-items: center; 
+    justify-content: center;
+    z-index: 2;
+    display: none;
+    overflow: visible;
+    background-color: black;
+    /* font-size:20vw; */
+    font-size: clamp(250px, 10vw,250px); 
+  }
+
+  .text-container.visible {
+    display: flex; 
+  }
+
+  .text1, .text2, .text3, .text4, .text5, .text6, .text7, .text8, .text9, .text10, .text11,.text12, .text13, .text14,
+  .text15, .text16, .text17, .text18, .text19, .text20, .text21, .text22, .text23, .text24, .text25,
+  .text26, .text27, .text28, .text29, .text30, .text31, .text32, .overview {
+    position: absolute; 
+    visibility: hidden; 
+    width: 100%; 
+    transform: translate(-50%, -50%);
+    text-align: center;
+    justify-content: center;
+  transform-origin: center center;
   }
   
+  .overview {
+    font-size: 5vw; 
+    animation: reveal 1s forwards;
+    animation-delay:14.1s;
+    text-align: left;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-top:10vw;
+    padding-left:5vw;
+  }
+
+  .text1 {
+    animation: contractY 0.4s  forwards;
+    animation-delay: 0; 
+  }
+  
+  .text2 {
+    animation: expandY 0.4s  forwards;
+    animation-delay: 0.4s; 
+
+  }
+  
+  .text3 {
+    animation: expandX 0.4s  forwards;
+    animation-delay: 0.8s; 
+  }
+  
+  .text4 {
+    animation: contractX 0.4s forwards;
+    animation-delay: 1.2s;
+  }
+  .text5 {
+    animation: expandY 0.4s forwards;
+    animation-delay: 1.6s;
+  }
+  .text6 {
+    animation: contractX 0.4s forwards;
+    animation-delay: 2s;
+  }
+  .text7 {
+    animation: contractX 0.4s forwards;
+    animation-delay: 2.4s;
+  }
+  .text8 {
+    animation: expandX 0.4s forwards;
+    animation-delay: 2.8s;
+  }
+  .text9 {
+    animation: expandY 0.4s forwards;
+    animation-delay: 3.2s;
+  }
+
+  .text10 {
+    animation: contractX 0.4s forwards;
+    animation-delay: 3.6s;
+  }
+  .text11 {
+    animation: contractX 0.4s forwards;
+    animation-delay: 4s;
+  }
+
+  /* period */
+  .text12 {
+    animation: big 0.7s forwards;
+    animation-delay: 4.4s;
+    background-color: white;
+    height:2vw;
+    width:2vw;
+    justify-content: center;
+  }
+
+  .text13 {
+    animation: expandY 0.4s forwards;
+    animation-delay: 5.1s;
+  }
+  .text14 {
+    animation: contractX 0.4s forwards;
+    animation-delay: 5.5s;
+  }
+
+  .text15 {
+    animation: expandY 0.4s forwards;
+    animation-delay: 5.9s;
+  }
+  .text16 {
+    animation: contractX 0.4s forwards;
+    animation-delay: 6.3s;
+  }
+
+  .text17 {
+    animation: contractX 0.4s forwards;
+    animation-delay: 6.7s;
+  }
+  .text18 {
+    animation: expandY 0.4s forwards;
+    animation-delay: 7.1s;
+  }
+  .text19 {
+    animation: contractX 0.4s forwards;
+    animation-delay: 7.5s;
+  }
+
+  .text20 {
+    animation: contractX 0.4s forwards;
+    animation-delay: 7.9s;
+    justify-content: center;
+  }
+
+  .text21 {
+    animation: expandX 0.4s forwards;
+    animation-delay: 8.3s;
+  }
+
+  .text22 {
+    animation: contractX 0.4s forwards;
+    animation-delay: 8.7s;
+  }
+
+/* period */
+  .text23 {
+    animation: shrink 0.7s forwards;
+    animation-delay: 9.5s;
+    background-color: white;
+    height:2vw;
+    width:2vw;
+    justify-content: center;
+  }
+
+  .text24 {
+    animation: expandX 0.4s forwards;
+    animation-delay: 10.2s;
+  }
+
+  .text25 {
+    animation: contractX 0.4s forwards;
+    animation-delay: 10.6s;
+  }
+  .text26 {
+    animation: expandX 0.4s forwards;
+    animation-delay: 11s;
+  }
+  .text27 {
+    animation: expandY 0.4s forwards;
+    animation-delay: 11.4s;
+  }
+  .text28 {
+    animation: expandY 0.4s forwards;
+    animation-delay: 11.8s;
+  }
+  .text29 {
+    animation: expandX 0.4s forwards;
+    animation-delay: 12.2s;
+  }
+  .text30 {
+    animation: contractX 0.4s forwards;
+    animation-delay: 12.6s;
+  }
+  .text31 {
+    animation: expandY 0.4s forwards;
+    animation-delay: 13s;
+  }
+  /* period */
+  .text32 {
+    animation: big 0.7s forwards;
+    animation-delay: 13.4s;
+    background-color: white;
+    height:2vw;
+    width:2vw;
+    justify-content: center;
+  }
+
   @keyframes stretch {
     0% {
       transform: scale(1, 1);
@@ -82,135 +314,108 @@
     100% {
       transform: scale(1, 1);
     }
-  } */
-  
+  }
 
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    text-align: left;
-    width: 100vw;
-    height: 100vh;
-    font-size: 18px;
-    font-family: sans-serif;
-    color: cornsilk;
-    background-color: black;
-    overflow: hidden;
+  @keyframes reveal {
+    0% {
+      opacity:0;
+      visibility: hidden; 
+    }
+
+    100% {
+      opacity:1;
+      visibility: visible;
+    }
+  }
+
+  @keyframes big {
+    0% {
+      transform: scale(1,1);
+      visibility: visible; 
+    }
+    50% {
+      transform: scale(10,10);
+      visibility: visible; 
+    }
+    100% {
+      transform: scale(10,10);
+      visibility: hidden; 
+    }
+  }
+
+  @keyframes shrink {
+    0% {
+      transform: scale(20,20);
+      visibility: visible; 
+    }
+    50% {
+      transform: scale(1,1);
+      visibility: visible; 
+    }
+    100% {
+      transform: scale(1,1);
+      visibility: hidden; 
+    }
+  }
+
+  @keyframes expandX {
+    0% {
+      transform: scaleX(1);
+      visibility: visible; 
+    }
+    50% {
+      transform: scaleX(2.4);
+      visibility: visible; 
+    }
+    100% {
+      transform: scaleX(2.4);
+      visibility: hidden; 
+    }
+  }
+
+  @keyframes expandY {
+    0% {
+      transform: scaleY(1);
+      visibility: visible; 
+    }
+    50% {
+      transform: scaleY(2.5);
+      visibility: visible; 
+    }
+    100% {
+      transform: scaleY(2.5);
+      visibility: hidden; 
+    }
   }
   
-  #title {
-    font-size: 6rem;
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    line-height: 1;
-    letter-spacing: -2px;
+  @keyframes contractX {
+    0% {
+      transform: scaleX(2);
+      visibility: visible; 
+    }
+
+    50% {
+      transform: scaleX(0.6);
+      visibility: visible; 
+    }
+
+    100% {
+      transform: scaleX(0.6);
+      visibility: hidden; 
+    }
   }
   
-  #container {
-    width: 100vw;
-    height: 100vh;
-    padding: 10px;
-  }
-  
-  #centerContainer {
-    display: block;
-    width: 100vw;
-    height: 100vh;
-  }
-  
-  #center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    font-size: 8em;
-    letter-spacing: -2px;
-    /* transform: scale(1, 1);
-    -webkit-transition: -webkit-transform 0.3s;
-     -moz-transition:    -moz-transform 0.3s;
-       -o-transition:      -o-transform 0.3s;
-          transition:         transform 0.3s; */
-    line-height: 0.9em;
-  }
-  
-  
-  
-  #field {
-    width: calc(100vw - 40px);
-    height: calc(100vh - 40px);
-    column-count: 12;
-    column-gap: 20px;
-    column-fill: balance;
-    position: fixed;
-    padding: 20px;
-    top: 0;
-    left: 0;
-    line-height: 1.2em;
-    text-align: justify;
-    transition: all 0.5s;
-  }
-  
-  
-  #clockContainer {
-    width: 70px;
-    height: 70px;
-    bottom: 5px;
-    right: 5px;
-    position: fixed;
-    display: inline-block;
-    cursor: pointer;
-    z-index: 2;
-  }
-  
-  #vertical {
-    width: 12px;
-    height: 70px;
-    background-color: cornsilk;
-    position: absolute;
-    left: 29px;
-  }
-  
-  #horizontal{
-    width: 70px;
-    height: 12px;
-    position: absolute;
-    top: 29px;
-    background-color: cornsilk;
-  }
-  #mute-btn {
-    color: cornsilk;
-    position: fixed;
-    padding: 25px;
-    left: 0;
-    bottom: 0;
-    text-align: center;
-    cursor: pointer;
-  }
-  
-  #mute-btn:hover {
-    color: black;
-    background-color: cornsilk;
-  }
-  
-  #nav {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    width: 0px;
-    height: 100vh;
-    border: 0;
-    transition: 0.25s;
-    z-index: 1;
-    border-radius: 2px;
-  }
-  
-  .showNav {
-    width: 400px!important;
-  }
-  
-  .navClock {
-    background-color: cornsilk!important;
+  @keyframes contractY {
+    0% {
+      transform: scaleY(2);
+      visibility: visible; 
+    }
+    50% {
+      transform: scaleY(1);
+      visibility: visible; 
+    }
+    100% {
+      transform: scaleY(1);
+      visibility: hidden; 
+    }
   }

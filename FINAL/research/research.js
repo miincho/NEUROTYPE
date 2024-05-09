@@ -38,8 +38,6 @@ document.querySelectorAll(".expandable").forEach(function(element) {
   });
 });
 
-
-
 document.addEventListener("DOMContentLoaded", function() {
   var title = document.querySelector('.title');
   var container = document.querySelector('.container');
