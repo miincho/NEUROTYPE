@@ -292,7 +292,7 @@ function fillViewportWithHallucinations() {
 //canvas bg start and stop functions
 function startCanvasAnimation() {
   // Create initial set of rectangles
-  for (let i = 0; i < 150; i++) {
+  for (let i = 0; i < 350; i++) {
       rectangles.push(createRectangle());
   }
   draw();
