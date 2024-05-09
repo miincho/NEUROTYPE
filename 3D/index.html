@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script> -->
+    <script src="aframe-master.1.0.4.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://rawgit.com/blairmacintyre/aframe-look-at-billboard-component/master/dist/aframe-look-at-billboard-component.min.js"></script>
+    <script src="aframe-text-geometry-component.min.js"></script>
+    <title>Simulation Space</title>
+</head>
+<body>
+    
+    <a-scene fog="type: exponential; color: #CDBFD1; density: 0.1;" text-updater>
+    <!-- <a-scene text-updater> -->
+        <!-- CAMERA STARTING POSITION -->
+        <a-entity camera="" position="2.7307 1.6 23.47182" wasd-controls="" rotation="-11.688339020668801 15.355268909506073 0" look-controls="" aframe-injected="" data-aframe-inspector-original-camera=""></a-entity>
+        
+        <!-- THE FLOOR -->
+        <a-plane position="0 0 -3" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" material="color: #000000" geometry="" scale="20 20 1"></a-plane> 
+        
+        <!-- THE SKY -->
+        <a-sky color="#ECECEC"></a-sky>
+
+        <!-- INITIAL TEXT -->
+        <a-entity id="textEntity" position="-1.95285 0.85557 17.9629" text-geometry="height: 0.1; value: What's on your mind?" material="color: #000000" text-updater=""></a-entity>    </a-scene>
+
+</body>
+</html>
