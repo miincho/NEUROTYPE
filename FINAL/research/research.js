@@ -99,48 +99,69 @@ document.addEventListener("DOMContentLoaded", function() {
       }
   });
 });
+function splitText(element) {
+  let words = element.textContent.split(" ");
+  element.innerHTML = ""; // Clear current text
+  words.forEach(word => {
+      let span = document.createElement("span");
+      span.textContent = word + " "; // Maintain spaces between words
+      element.appendChild(span);
+  });
+}
 
-// Revised applyEffects function
 function applyEffects(element, fontList) {
-  // Apply initial settings
-  element.style.opacity = 1;
-  element.style.filter = "blur(0px)";
-  element.style.fontSize = "5vw";
-  element.style.fontFamily = "helvetica";
+  // Split text into spans
+  splitText(element);
 
-  // Apply effects with delay
+  // Apply random blur to random words after 5 seconds
   setTimeout(() => {
       randomBlur(element);
   }, 5000);
 
-  setTimeout(() => {
-      applyRandomFont(element, fontList);
-  }, 8000);
-
+  // Apply random font size to random words after another 5 seconds
   setTimeout(() => {
       randomSize(element);
-  }, 9000);
+  }, 10000);
+
+  // Apply random font family to random words after another 5 seconds
+  setTimeout(() => {
+      applyRandomFont(element, fontList);
+  }, 15000);
 }
 
-  function randomSize(span) {
-      const randomSize = Math.floor(Math.random() * 35) + 55;
-      span.style.fontSize = randomSize + "px";
-      span.style.transition = "font-size 0.3s ease";
-  }
+function randomBlur(element) {
+  const spans = element.querySelectorAll('span');
+  spans.forEach(span => {
+      if (Math.random() < 0.5) { // 50% chance to apply blur
+          const blurAmount = Math.random() * 5;
+          span.style.filter = `blur(${blurAmount}px)`;
+          span.style.transition = "filter 0.3s ease";
+      }
+  });
+}
 
-  function applyRandomFont(span, fontList) {
-      const randomIndex = Math.floor(Math.random() * fontList.length);
-      span.style.fontFamily = fontList[randomIndex];
-      span.style.transition = "font-family 0.3s ease";
-  }
+function randomSize(element) {
+  const spans = element.querySelectorAll('span');
+  spans.forEach(span => {
+      if (Math.random() < 0.5) { // 50% chance to change size
+          const randomSize = Math.floor(Math.random() * 35) + 55;
+          span.style.fontSize = randomSize + "px";
+          span.style.transition = "font-size 0.3s ease";
+      }
+  });
+}
 
-  function randomBlur(span) {
-      const blurAmount = Math.random() * 5; // Random blur amount, up to 5px
-      span.style.filter = `blur(${blurAmount}px)`;
-      span.style.transition = "filter 0.3s ease";
-  }
+function applyRandomFont(element, fontList) {
+  const spans = element.querySelectorAll('span');
+  spans.forEach(span => {
+      if (Math.random() < 0.5) { // 50% chance to change font
+          const randomIndex = Math.floor(Math.random() * fontList.length);
+          span.style.fontFamily = fontList[randomIndex];
+          span.style.transition = "font-family 0.3s ease";
+      }
+  });
+}
 
-  splitText(element.textContent);
 
 
 // document.addEventListener("DOMContentLoaded", function() {
