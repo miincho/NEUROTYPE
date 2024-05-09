@@ -64,6 +64,19 @@
 //   applyEffects(document.getElementById("info-effect"), ['synt', 'editorial', 'pixel', 'montreal', 'Helvetica']);  // Assuming the ID for the info text is 'info-text'
 // });
 
+
+// document.querySelectorAll(".expandable").forEach(function(element) {
+//   element.addEventListener("click", function() {
+//       this.classList.toggle("clicked");
+//   });
+
+//   // Stop propagation for links inside the rectangles
+//   element.querySelectorAll("a").forEach(function(link) {
+//     link.addEventListener("click", function(event) {
+//       event.stopPropagation(); // Prevents the click from affecting the rectangle
+//     });
+//   });
+// });
 document.addEventListener("DOMContentLoaded", function() {
   var title = document.querySelector('.title');
   var container = document.querySelector('.container');
@@ -74,29 +87,60 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
-document.querySelectorAll(".expandable").forEach(function(element) {
-  element.addEventListener("click", function() {
-      this.classList.toggle("clicked");
-  });
-
-  // Stop propagation for links inside the rectangles
-  element.querySelectorAll("a").forEach(function(link) {
-    link.addEventListener("click", function(event) {
-      event.stopPropagation(); // Prevents the click from affecting the rectangle
-    });
-  });
-});
-
 document.addEventListener("DOMContentLoaded", function() {
-  var expandRect = document.getElementById("expand1");
-  expandRect.addEventListener("click", function() {
-      this.classList.toggle("clicked");
-      if (this.classList.contains("clicked")) {
-          var titleEffect = this.querySelector('#title-effect');
-          var infoEffect = this.querySelector('#info-effect');
-          applyEffects(titleEffect, ['synt', 'editorial', 'pixel', 'montreal', 'Helvetica']);
-          applyEffects(infoEffect, ['synt', 'editorial', 'pixel', 'montreal', 'Helvetica']);
-      }
+  const rectangles = document.querySelectorAll(".rect");
+  let glitchColors = ["#ffffff", "#f9fb00", "#02feff", "#01ff00", "#fd00fb", "#fb0102", "#0301fc", "#000000"];
+
+  rectangles.forEach(rect => {
+      rect.addEventListener("click", function() {
+          // Collapse any currently expanded rectangles except the current one
+          document.querySelectorAll('.rect.clicked').forEach(openRect => {
+              if (openRect !== rect) {
+                  openRect.classList.remove('clicked');
+                  const infoText = openRect.querySelector(".info-text");
+                  if (infoText) {
+                      infoText.style.display = 'none';
+                  }
+              }
+          });
+
+          // Toggle current rectangle
+          this.classList.toggle("clicked");
+          const infoText = this.querySelector(".info-text");
+
+          // Handle unique effects or general show/hide based on state
+          if (this.classList.contains("clicked")) {
+              if (infoText) {
+                  infoText.style.display = 'block'; // Show info text if it was hidden
+              }
+
+              // Apply specific effects based on IDs or additional class identifiers
+              switch (this.id) {
+                  case 'expand1':
+                      applyEffects(this.querySelector('#title-effect'), ['synt', 'editorial', 'pixel', 'montreal', 'Helvetica']);
+                      applyEffects(this.querySelector('#info-effect'), ['synt', 'editorial', 'pixel', 'montreal', 'Helvetica']);
+                      break;
+                  case 'expand2':
+                      prepareText(this.querySelector('#title-effect2'));
+                      prepareText(this.querySelector('#info-effect2'));
+                      applyReverseEffects(this.querySelector('#title-effect2'), ['synt', 'editorial', 'pixel', 'montreal', 'Helvetica']);
+                      applyReverseEffects(this.querySelector('#info-effect2'), ['synt', 'editorial', 'pixel', 'montreal', 'Helvetica']);
+                      break;
+                  case 'expand3':
+                      applyGlitchEffect(this.querySelector('#info-effect3'), glitchColors);
+                      break;
+              }
+          } else if (infoText) {
+              infoText.style.display = 'none'; // Hide info text
+          }
+      });
+  });
+
+  // Example of listening for end of an animation
+  const title = document.querySelector('.title');
+  const container = document.querySelector('.container');
+  title.addEventListener('animationend', () => {
+      container.classList.add('visible'); // Make the container visible after animation
   });
 });
 
@@ -110,17 +154,7 @@ function splitText(element) {
       element.appendChild(span);
   });
 }
-document.addEventListener("DOMContentLoaded", function() {
-  let glitchColors = ["#ffffff", "#f9fb00", "#02feff", "#01ff00", "#fd00fb", "#fb0102", "#0301fc", "#000000"];
-  const expandRect = document.getElementById("expand3");
 
-  expandRect.addEventListener("click", function() {
-      this.classList.toggle("clicked");
-      if (this.classList.contains("clicked")) {
-          applyGlitchEffect(document.getElementById('info-effect3'), glitchColors);
-      }
-  });
-});
 
 function applyGlitchEffect(element, colors) {
   let words = element.textContent.split(" ");
@@ -205,21 +239,6 @@ function applyRandomFont(element, fontList) {
       }
   });
 }
-
-document.addEventListener("DOMContentLoaded", function() {
-  var expandRect = document.getElementById("expand2");
-  expandRect.addEventListener("click", function() {
-      this.classList.toggle("clicked");
-      if (this.classList.contains("clicked")) {
-          var titleEffect = this.querySelector('#title-effect2');
-          var infoEffect = this.querySelector('#info-effect2');
-          prepareText(titleEffect);
-          prepareText(infoEffect);
-          applyReverseEffects(titleEffect, ['synt', 'editorial', 'pixel', 'montreal', 'Helvetica']);
-          applyReverseEffects(infoEffect, ['synt', 'editorial', 'pixel', 'montreal', 'Helvetica']);
-      }
-  });
-});
 
 function prepareText(element) {
   let words = element.textContent.trim().split(" ");
