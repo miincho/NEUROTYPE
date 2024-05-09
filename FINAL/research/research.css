@@ -126,6 +126,25 @@ a:hover {
     transform-origin: left bottom; /* Anchor transformation to the left */
   
   }
+  .topRow {
+    width: 100%; /* Adjust this as necessary */
+    height: auto; /* Adjust based on your content */
+    position: relative; /* Needed for absolute positioning inside */
+  }
+  
+  .top1 {
+    position: absolute; /* Position the child div absolutely within its relative parent */
+    top: 0; /* Align top edge of this div to the top edge of its parent */
+    left: 0; /* Align left edge of this div to the left edge of its parent */
+  }
+  
+  .top1 a {
+    display: block; /* Make the link block-level for easier size and position manipulation */
+    padding: 5px; /* Add padding for better clickability and visibility */
+    text-decoration: none; /* Optional: removes the underline */
+    color: black; /* Adjust color as needed */
+    font-weight: bold; /* Optional: makes the link text bold */
+  }
   
   @keyframes stretch {
     0% {
