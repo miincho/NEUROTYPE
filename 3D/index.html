@@ -14,15 +14,14 @@
     
     <a-scene fog="type: exponential; color: #000000; density: 0.05;" text-updater>
     <!-- <a-scene text-updater> -->
-        <!-- CAMERA STARTING POSITION -->
-        <a-entity camera="" wasd-controls="acceleration:  40" position="-0.84601 3 31.32966" wasd-controls="" rotation="" look-controls="" aframe-injected="" data-aframe-inspector-original-camera=""></a-entity>        
-        <!-- <a-sphere position="-0.84601 1.6 31.32966" color="yellow" radius="5" material="" geometry="radius: 0.5"></a-sphere> -->
+        <!-- CAMERA STARTING POSITION -->  
+        <a-entity camera="" wasd-controls="acceleration:  50" position="-0.84601 3 31.32966" rotation="" look-controls="" aframe-injected="" data-aframe-inspector-original-camera=""></a-entity>        
 
         <!-- THE FLOOR -->
-        <a-plane position="0 0 -25.69936" rotation="-90 0 0" width="4" height="4" color="#000000" material="" geometry="" scale="35 35 1"></a-plane>
+        <!-- <a-plane position="0 0 -25.69936" rotation="-90 0 0" width="4" height="4" color="#000000" material="" geometry="" scale="35 35 1"></a-plane> -->
 
         <!-- THE SKY -->
-        <a-sky color="#ECECEC"></a-sky>
+        <a-sky color="#000000"></a-sky>
 
         <!-- INITIAL TEXT -->
         <a-entity id="textEntity" position="-4.44348 3 22.52595" text-geometry="height: 0.1; value: What's on your mind?" material="color: #EAEAEA" text-updater=""></a-entity>
@@ -45,7 +44,13 @@
         <a-video src="videos/Compressed/gogh-phrase-3.mov" id="" autoplay="" loop="true" width="16" height="111" position="-1.09273 14.1 -64.29334" material="" geometry="height: 11" rotation="-90 0 0" scale="2 5 1.5"></a-video>
         <a-video src="videos/Compressed/taylor-paragraph-3.5.mp4" id="taylor35" autoplay="" loop="true" width="16" height="11" position="14.52521 3.69917 -59.02123" material="" geometry="" rotation="0 90 0" scale="2 2 1.5"></a-video>
         <a-video src="videos/Compressed/gogh-word-1.mp4" id="gogh3" autoplay="" loop="true" width="16" height="11" position="-16.72364 3.69917 -58.64431" material="" geometry="" rotation="0 90 0" scale="2 2 1.5"></a-video>        
-        <a-video src="videos/Compressed/taylor-sentence-1.mov" id="tay" autoplay="" loop="true" width="16" height="11" position="-1.22007 3.69917 -74.28957" material="" geometry="" rotation="" scale="2 2 1.5"></a-video>    
+        <a-video src="videos/Compressed/taylor-sentence-1.mov" id="tay" autoplay="" loop="true" width="16" height="11" position="-1.22007 3.69917 -74.28957" material="" geometry="" rotation="" scale="2 2 1.5"></a-video>   
+        
+        <!-- SATISFYING CUBE -->
+        <a-entity geometry="primitive: box" material="src: videos/Compressed/gogh-paragraph-1.mov" position="18.44348 4 22.52595"  
+                  animation="property: rotation; to: 0 360 0; loop: true; dur: 5000; easing: linear"></a-entity>
+
+                  
     </a-scene>
 
 </body>
