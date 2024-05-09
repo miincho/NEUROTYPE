@@ -52,18 +52,19 @@
     color: white;
   }
   
-  .info{
+  /* .info{
     color:black;
     padding:3vh;
     overflow: hidden;
   }
-  
+   */
   .info-title{
     font-size:5vw;
     text-align:center;
     justify-content: center; 
    font-weight: 500;
    padding:3vw;
+   color:black;
   }
 
   .phase-title{
@@ -71,6 +72,7 @@
     font-size:3vw;
     text-align:center;
     justify-content: center; 
+    color:black;
   }
 
   .info-text {
@@ -78,6 +80,7 @@
     padding:5vw;
     font-family: 'helvetica';
     font-size: 3rem;
+    color:black;
 }
 
 .rect {
