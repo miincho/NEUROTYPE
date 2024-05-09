@@ -64,6 +64,19 @@
 //   applyEffects(document.getElementById("info-effect"), ['synt', 'editorial', 'pixel', 'montreal', 'Helvetica']);  // Assuming the ID for the info text is 'info-text'
 // });
 
+
+// document.querySelectorAll(".expandable").forEach(function(element) {
+//   element.addEventListener("click", function() {
+//       this.classList.toggle("clicked");
+//   });
+
+//   // Stop propagation for links inside the rectangles
+//   element.querySelectorAll("a").forEach(function(link) {
+//     link.addEventListener("click", function(event) {
+//       event.stopPropagation(); // Prevents the click from affecting the rectangle
+//     });
+//   });
+// });
 document.addEventListener("DOMContentLoaded", function() {
   var title = document.querySelector('.title');
   var container = document.querySelector('.container');
@@ -74,73 +87,207 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
-document.querySelectorAll(".expandable").forEach(function(element) {
-  element.addEventListener("click", function() {
-      this.classList.toggle("clicked");
-  });
-
-  // Stop propagation for links inside the rectangles
-  element.querySelectorAll("a").forEach(function(link) {
-    link.addEventListener("click", function(event) {
-      event.stopPropagation(); // Prevents the click from affecting the rectangle
-    });
-  });
-});
-
 document.addEventListener("DOMContentLoaded", function() {
-  var expandRect = document.getElementById("expand1");
-  expandRect.addEventListener("click", function() {
-      this.classList.toggle("clicked");
-      if (this.classList.contains("clicked")) {
-          var titleEffect = this.querySelector('#title-effect');
-          var infoEffect = this.querySelector('#info-effect');
-          applyEffects(titleEffect, ['synt', 'editorial', 'pixel', 'montreal', 'Helvetica']);
-          applyEffects(infoEffect, ['synt', 'editorial', 'pixel', 'montreal', 'Helvetica']);
-      }
+  const rectangles = document.querySelectorAll(".rect");
+  let glitchColors = ["#ffffff", "#f9fb00", "#02feff", "#01ff00", "#fd00fb", "#fb0102", "#0301fc", "#000000"];
+
+  rectangles.forEach(rect => {
+      rect.addEventListener("click", function() {
+          // Collapse any currently expanded rectangles except the current one
+          document.querySelectorAll('.rect.clicked').forEach(openRect => {
+              if (openRect !== rect) {
+                  openRect.classList.remove('clicked');
+                  const infoText = openRect.querySelector(".info-text");
+                  if (infoText) {
+                      infoText.style.display = 'none';
+                  }
+              }
+          });
+
+          // Toggle current rectangle
+          this.classList.toggle("clicked");
+          const infoText = this.querySelector(".info-text");
+
+          // Handle unique effects or general show/hide based on state
+          if (this.classList.contains("clicked")) {
+              if (infoText) {
+                  infoText.style.display = 'block'; // Show info text if it was hidden
+              }
+
+              // Apply specific effects based on IDs or additional class identifiers
+              switch (this.id) {
+                  case 'expand1':
+                      applyEffects(this.querySelector('#title-effect'), ['synt', 'editorial', 'pixel', 'montreal', 'Helvetica']);
+                      applyEffects(this.querySelector('#info-effect'), ['synt', 'editorial', 'pixel', 'montreal', 'Helvetica']);
+                      break;
+                  case 'expand2':
+                      prepareText(this.querySelector('#title-effect2'));
+                      prepareText(this.querySelector('#info-effect2'));
+                      applyReverseEffects(this.querySelector('#title-effect2'), ['synt', 'editorial', 'pixel', 'montreal', 'Helvetica']);
+                      applyReverseEffects(this.querySelector('#info-effect2'), ['synt', 'editorial', 'pixel', 'montreal', 'Helvetica']);
+                      break;
+                  case 'expand3':
+                      applyGlitchEffect(this.querySelector('#info-effect3'), glitchColors);
+                      break;
+              }
+          } else if (infoText) {
+              infoText.style.display = 'none'; // Hide info text
+          }
+      });
+  });
+
+  // Example of listening for end of an animation
+  const title = document.querySelector('.title');
+  const container = document.querySelector('.container');
+  title.addEventListener('animationend', () => {
+      container.classList.add('visible'); // Make the container visible after animation
   });
 });
 
-// Revised applyEffects function
-function applyEffects(element, fontList) {
-  // Apply initial settings
-  element.style.opacity = 1;
-  element.style.filter = "blur(0px)";
-  element.style.fontSize = "5vw";
-  element.style.fontFamily = "helvetica";
 
-  // Apply effects with delay
+function splitText(element) {
+  let words = element.textContent.split(" ");
+  element.innerHTML = ""; // Clear current text
+  words.forEach(word => {
+      let span = document.createElement("span");
+      span.textContent = word + " "; // Maintain spaces between words
+      element.appendChild(span);
+  });
+}
+
+
+function applyGlitchEffect(element, colors) {
+  let words = element.textContent.split(" ");
+  element.innerHTML = "";  // Clear current text
+  let delay = 0;  // Start with no delay and increase for each word
+
+  words.forEach(word => {
+      const span = document.createElement('span');
+      span.textContent = word + ' ';
+      element.appendChild(span);
+
+      setTimeout(() => {
+          applyRandomGlitch(span, colors);
+      }, delay);
+
+      delay += 1000;  // Increase delay for each subsequent word
+  });
+}
+
+function applyRandomGlitch(span, colors) {
+  span.className = 'glitch-word';
+
+  // Assign random color and scale
+  const randomColorIndex = Math.floor(Math.random() * colors.length);
+  const randomScaleX = Math.random() * 0.5;  // Up to 0.5 scale
+  const randomScaleY = Math.random() * 0.5;  // Up to 0.5 scale
+
+  span.style.setProperty('--random-color', colors[randomColorIndex]);
+  span.style.setProperty('--random-scale-x', randomScaleX);
+  span.style.setProperty('--random-scale-y', randomScaleY);
+}
+
+function applyEffects(element, fontList) {
+  // Split text into spans
+  splitText(element);
+
+  // Apply random blur to random words after 5 seconds
   setTimeout(() => {
       randomBlur(element);
   }, 5000);
 
-  setTimeout(() => {
-      applyRandomFont(element, fontList);
-  }, 8000);
-
+  // Apply random font size to random words after another 5 seconds
   setTimeout(() => {
       randomSize(element);
-  }, 9000);
+  }, 10000);
+
+  // Apply random font family to random words after another 5 seconds
+  setTimeout(() => {
+      applyRandomFont(element, fontList);
+  }, 15000);
 }
 
-  function randomSize(span) {
-      const randomSize = Math.floor(Math.random() * 35) + 55;
-      span.style.fontSize = randomSize + "px";
-      span.style.transition = "font-size 0.3s ease";
-  }
+function randomBlur(element) {
+  const spans = element.querySelectorAll('span');
+  spans.forEach(span => {
+      if (Math.random() < 0.5) { // 50% chance to apply blur
+          const blurAmount = Math.random() * 5;
+          span.style.filter = `blur(${blurAmount}px)`;
+          span.style.transition = "filter 0.3s ease";
+      }
+  });
+}
 
-  function applyRandomFont(span, fontList) {
+function randomSize(element) {
+  const spans = element.querySelectorAll('span');
+  spans.forEach(span => {
+      if (Math.random() < 0.5) { // 50% chance to change size
+          const randomSize = Math.floor(Math.random() * 35) + 55;
+          span.style.fontSize = randomSize + "px";
+          span.style.transition = "font-size 0.3s ease";
+      }
+  });
+}
+
+function applyRandomFont(element, fontList) {
+  const spans = element.querySelectorAll('span');
+  spans.forEach(span => {
+      if (Math.random() < 0.5) { // 50% chance to change font
+          const randomIndex = Math.floor(Math.random() * fontList.length);
+          span.style.fontFamily = fontList[randomIndex];
+          span.style.transition = "font-family 0.3s ease";
+      }
+  });
+}
+
+function prepareText(element) {
+  let words = element.textContent.trim().split(" ");
+  element.innerHTML = ""; // Clear current text
+  words.forEach(word => {
+      let span = document.createElement("span");
+      span.textContent = word + " "; // Maintain spaces between words
+      element.appendChild(span);
+  });
+}
+
+function applyReverseEffects(element, fontList) {
+  fullApplyEffects(element, fontList); // Apply all effects immediately
+
+  setTimeout(() => removeBlur(element), 5000);
+  setTimeout(() => normalizeSize(element), 10000);
+  setTimeout(() => resetFont(element), 15000);
+}
+
+function fullApplyEffects(element, fontList) {
+  const spans = element.querySelectorAll('span');
+  spans.forEach(span => {
+      const randomSize = Math.floor(Math.random() * 20) + 30; // More noticeable size
       const randomIndex = Math.floor(Math.random() * fontList.length);
+      const blurAmount = Math.random() * 10; // More noticeable blur
+
+      span.style.fontSize = randomSize + "px";
       span.style.fontFamily = fontList[randomIndex];
-      span.style.transition = "font-family 0.3s ease";
-  }
-
-  function randomBlur(span) {
-      const blurAmount = Math.random() * 5; // Random blur amount, up to 5px
       span.style.filter = `blur(${blurAmount}px)`;
-      span.style.transition = "filter 0.3s ease";
-  }
+      span.style.transition = "all 0.3s ease";
+      console.log("Effects applied to:", span.textContent); // Log applied effects
+  });
+}
 
-  splitText(element.textContent);
+function removeBlur(element) {
+  const spans = element.querySelectorAll('span');
+  spans.forEach(span => span.style.filter = "blur(0px)");
+}
+
+function normalizeSize(element) {
+  const spans = element.querySelectorAll('span');
+  spans.forEach(span => span.style.fontSize = "5vw");
+}
+
+function resetFont(element) {
+  const spans = element.querySelectorAll('span');
+  spans.forEach(span => span.style.fontFamily = "Helvetica");
+}
+
 
 
 // document.addEventListener("DOMContentLoaded", function() {
