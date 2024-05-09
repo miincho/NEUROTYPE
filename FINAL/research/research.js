@@ -1,5 +1,3 @@
-const one =document.getElementById("expand")
-
 document.getElementById("expand").addEventListener("click", function() {
   this.classList.toggle("clicked");
 });
@@ -31,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-document.addEventListener("mouseover", function() {
+document.addEventListener("DOMContentLoaded", function() {
     let title = document.getElementById("title-effect");
 
     // Split the text into spans
@@ -60,7 +58,7 @@ document.addEventListener("mouseover", function() {
 
     // Change to random font size
     function randomSize(span) {
-        const randomSize = Math.floor(Math.random() * 45) + 95;
+        const randomSize = Math.floor(Math.random() * 45) + 75;
         span.style.fontSize = randomSize + "px";
         span.style.transition = "font-size 0.3s ease";
     }
@@ -83,3 +81,4 @@ document.addEventListener("mouseover", function() {
     splitText(title.textContent);
   
 });
+

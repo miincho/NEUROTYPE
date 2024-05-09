@@ -50,19 +50,51 @@
     font-family: Helvetica;
     background-color: var(--color-bg);
     color: white;
-    overflow-x: hidden;
   }
   
   .info{
     color:black;
     padding:3vh;
+    overflow: hidden;
   }
   
   .info-title{
-    font-size:8vw;
+    font-size:5vw;
+    text-align:center;
+    justify-content: center; 
+   font-weight: 500;
+   padding:3vw;
+  }
+
+  .phase-title{
+    top:0;
+    font-size:3vw;
     text-align:center;
     justify-content: center; 
   }
+
+  .info-text {
+    display: none;
+    padding:5vw;
+    font-family: 'helvetica';
+    font-size: 3rem;
+}
+
+.rect {
+  width: 100vw;
+  height: 30vh;
+  background-color: white;
+  transition: all 0.3s ease;
+  cursor: pointer;  
+  overflow:none;
+}
+
+/* Class to show info-text when rectangle is expanded */
+.rect.clicked .info-text {
+    display: block;
+    overflow-y: auto;          /* Allow scrolling if content is taller than the view */
+
+}
   
   .title-container{
     width:100%;
@@ -107,14 +139,6 @@
     overflow: visible
   }
   
-  .rect {
-    width: 100vw;
-    height: 30vh;
-    background-color: white;
-    transition: all 0.3s ease;
-    cursor: pointer;
-      
-  }
   
   .container.visible {
     display: block; /* Show after the animation */
