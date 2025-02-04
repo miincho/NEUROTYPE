@@ -353,7 +353,7 @@ function effect1() {
 }
 
 function effect2() {
-  startCanvasAnimation();
+  // startCanvasAnimation();
   setRandomValues();
   const randomValuesInterval = setInterval(setRandomValues, 1000);
   toggleTranslation();
